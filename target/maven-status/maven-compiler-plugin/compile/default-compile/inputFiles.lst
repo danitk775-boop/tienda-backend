@@ -1,0 +1,9 @@
+/workspaces/tienda-backend/src/main/java/com/tienda/controller/VentaController.java
+/workspaces/tienda-backend/src/main/java/com/tienda/model/Producto.java
+/workspaces/tienda-backend/src/main/java/com/tienda/TiendaApplication.java
+/workspaces/tienda-backend/src/main/java/com/tienda/controller/ProductoController.java
+/workspaces/tienda-backend/src/main/java/com/tienda/model/Cliente.java
+/workspaces/tienda-backend/src/main/java/com/tienda/model/Venta.java
+/workspaces/tienda-backend/src/main/java/com/tienda/service/ProductoService.java
+/workspaces/tienda-backend/src/main/java/com/tienda/service/VentaService.java
+/workspaces/tienda-backend/src/main/java/com/tienda/model/DetalleVenta.java
