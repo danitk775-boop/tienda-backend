@@ -1,0 +1,4 @@
+com/tienda/controller/AuthControllerTest.class
+com/tienda/controller/VentaControllerTest.class
+com/tienda/controller/ProductoControllerTest.class
+com/tienda/controller/ClienteControllerTest.class

@@ -1,20 +1,43 @@
 package com.tienda.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+@Entity
+@Table(name = "productos")
 public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "El nombre es obligatorio")
+    @Column(nullable = false, length = 100)
     private String nombre;
+
+    @Column(length = 255)
     private String descripcion;
+
+    @NotNull
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Column(nullable = false)
     private Double precio;
+
+    @NotNull
+    @Min(0)
+    @Column(nullable = false)
     private Integer stock;
+
+    @NotBlank
+    @Column(nullable = false, length = 50)
     private String categoria;
+
+    @Column(length = 50, unique = true)
     private String codigoBarras;
 
     public Producto() {}
 
-    public Producto(Long id, String nombre, String descripcion, 
-                    Double precio, Integer stock, String categoria, 
-                    String codigoBarras) {
-        this.id = id;
+    public Producto(String nombre, String descripcion, Double precio,
+                    Integer stock, String categoria, String codigoBarras) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;

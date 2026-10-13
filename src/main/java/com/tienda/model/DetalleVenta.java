@@ -1,21 +1,38 @@
 package com.tienda.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "detalle_ventas")
 public class DetalleVenta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
+
+    @Column(nullable = false)
     private Integer cantidad;
+
+    @Column(nullable = false)
     private Double precioUnitario;
+
+    @Column(nullable = false)
     private Double subtotal;
 
     public DetalleVenta() {}
 
-    public DetalleVenta(Long id, Producto producto, Integer cantidad, 
-                        Double precioUnitario) {
-        this.id = id;
+    public DetalleVenta(Producto producto, Integer cantidad, Double precioUnitario) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
         this.subtotal = precioUnitario * cantidad;
+    }
+
+    public void recalcularSubtotal() {
+        this.subtotal = this.precioUnitario * this.cantidad;
     }
 
     public Long getId() { return id; }

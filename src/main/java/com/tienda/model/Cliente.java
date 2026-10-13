@@ -1,20 +1,41 @@
 package com.tienda.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+@Entity
+@Table(name = "clientes")
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Column(nullable = false, length = 50)
     private String nombre;
+
+    @NotBlank
+    @Column(nullable = false, length = 50)
     private String apellido;
+
+    @Email
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
+
+    @Column(length = 20)
     private String telefono;
+
+    @Column(length = 200)
     private String direccion;
+
+    @NotBlank
+    @Column(nullable = false, unique = true, length = 20)
     private String dni;
 
     public Cliente() {}
 
-    public Cliente(Long id, String nombre, String apellido, 
-                   String email, String telefono, String direccion, 
-                   String dni) {
-        this.id = id;
+    public Cliente(String nombre, String apellido, String email,
+                   String telefono, String direccion, String dni) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

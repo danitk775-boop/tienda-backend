@@ -1,30 +1,51 @@
 package com.tienda.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "ventas")
 public class Venta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date fecha;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-    private List<DetalleVenta> detalles;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "venta_id")
+    private List<DetalleVenta> detalles = new ArrayList<>();
+
+    @Column(nullable = false)
     private Double total;
+
+    @Column(length = 30)
     private String metodoPago;
+
+    @Column(length = 20)
     private String estado;
 
     public Venta() {}
-
-    public Venta(Long id, Date fecha, Cliente cliente, 
-                 List<DetalleVenta> detalles, String metodoPago) {
-        this.id = id;
+    public Venta(Date fecha, Cliente cliente, List<DetalleVenta> detalles, String metodoPago) {
         this.fecha = fecha;
         this.cliente = cliente;
         this.detalles = detalles;
         this.metodoPago = metodoPago;
         this.estado = "PENDIENTE";
-        this.total = detalles.stream()
-                .mapToDouble(DetalleVenta::getSubtotal)
-                .sum();
+        recalcularTotal();
+    }
+
+    public void recalcularTotal() {
+        this.total = (detalles == null) ? 0.0 :
+                detalles.stream().mapToDouble(DetalleVenta::getSubtotal).sum();
     }
 
     public Long getId() { return id; }

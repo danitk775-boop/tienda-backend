@@ -1,0 +1,4 @@
+/workspaces/tienda-backend/src/test/java/com/tienda/controller/ProductoControllerTest.java
+/workspaces/tienda-backend/src/test/java/com/tienda/controller/ClienteControllerTest.java
+/workspaces/tienda-backend/src/test/java/com/tienda/controller/VentaControllerTest.java
+/workspaces/tienda-backend/src/test/java/com/tienda/controller/AuthControllerTest.java

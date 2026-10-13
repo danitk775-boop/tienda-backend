@@ -8,8 +8,9 @@ public class TiendaApplication {
     public static void main(String[] args) {
         SpringApplication.run(TiendaApplication.class, args);
         System.out.println("=========================================");
-        System.out.println("TIENDA API CORRIENDO");
-        System.out.println("http://localhost:8080");
+        System.out.println(" TIENDA API CORRIENDO");
+        System.out.println(" http://localhost:8080");
+        System.out.println(" H2: http://localhost:8080/h2-console");
         System.out.println("=========================================");
     }
 }
